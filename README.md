@@ -1,3 +1,5 @@
+Open [https://svyatoslavik.github.io/rascal-calc] (https://svyatoslavik.github.io/rascal-calc) to view online demo
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
