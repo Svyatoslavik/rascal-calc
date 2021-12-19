@@ -1,5 +1,12 @@
 import react, { useState } from 'react';
+import styled from 'styled-components';
 import './CalcHafeleWoodPro.css';
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;
 
 export function CalcHafeleWoodPro() {
 
@@ -34,7 +41,7 @@ ${sideDepth} x ${sideHeight} - 2шт
 
   return (
     <div>
-      <h1>Рассчет шухляды для Hafele Wood Pro</h1>
+      <Title>Рассчет шухляды для Hafele Wood Pro</Title>
       <a href="./Woodpro.pdf" target="_blank">Hafele Wood Pro doc</a>
       <div>
         <div>
