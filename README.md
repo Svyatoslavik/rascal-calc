@@ -1,4 +1,4 @@
-Open [https://svyatoslavik.github.io/rascal-calc] (https://svyatoslavik.github.io/rascal-calc) to view online demo
+Open [https://svyatoslavik.github.io/drawer-calc] (https://svyatoslavik.github.io/drawer-calc) to view online demo
 
 # Getting Started with Create React App
 
