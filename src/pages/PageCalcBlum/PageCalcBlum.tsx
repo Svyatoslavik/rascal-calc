@@ -41,6 +41,8 @@ export function PageCaclBlum() {
         <div>
             <Title>Рассчет шухляды для направляющей Blum</Title>
 
+            <DocumentLink href="./blum560f5000.pdf" target="_blank">📝 Documentation: Blum 560F5000</DocumentLink>
+
             <div>
                 <div>
                     Внутрення ширина корпуса (тумбы)
@@ -124,3 +126,14 @@ export function PageCaclBlum() {
         </div>
     );
 }
+
+const DocumentLink = styled.a`
+    color: blue;
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+
+    &:hover{
+        background-color: rgba(0,0,0,.1);
+    }
+`;
