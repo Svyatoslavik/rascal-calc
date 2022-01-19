@@ -14,7 +14,8 @@ export function PageCaclBlum() {
     const [dspWidth, setDspWidth] = useState(16);
     const [hem, setHem] = useState(1); // зазор на кромку
 
-    const drawerLength = nominalLength - 10; // отнимаем 10мм согласно инструкции к направляющей
+    // const drawerLength = nominalLength - 10; // отнимаем 10мм согласно инструкции к направляющей,
+    const drawerLength = nominalLength - 5; // Но: практика показала что отнять надо только 5мм 
 
     const bottomWidth = width - 49 - hem;
     const bottomDepth = drawerLength - dspWidth - hem - 1; // онимаем 1мм на зазор для днища шухляды
@@ -29,15 +30,12 @@ export function PageCaclBlum() {
     const frontHeight = height - dspWidth - hem;
 
     const detailsTxt =
-        `  ${bottomWidth} x ${bottomDepth} - 1шт
-  ${backWidth} x ${backHeight} - 1шт
-  ${frontWidth} x ${frontHeight} - 1шт
-  ${sideDepth} x ${sideHeight} - 2шт
-  
-  Толщина ДСП: ${dspWidth}
-  
-  Зазор на кромку (по всем торцам деталей): ${hem} 
-  `
+        `${bottomWidth} x ${bottomDepth} - 1шт` + "\n" +
+        `${backWidth} x ${backHeight} - 1шт` + "\n" +
+        `${frontWidth} x ${frontHeight} - 1шт` + "\n" +
+        `${sideDepth} x ${sideHeight} - 2шт` + "\n\n" +
+        `Толщина ДСП: ${dspWidth}` + "\n" +
+        `Зазор на кромку (по всем торцам деталей): ${hem} `;
 
     return (
         <div>
