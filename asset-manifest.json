@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/drawer-calc/static/css/main.c15ca14f.chunk.css",
-    "main.js": "/drawer-calc/static/js/main.56790b7e.chunk.js",
-    "main.js.map": "/drawer-calc/static/js/main.56790b7e.chunk.js.map",
+    "main.js": "/drawer-calc/static/js/main.704f11e1.chunk.js",
+    "main.js.map": "/drawer-calc/static/js/main.704f11e1.chunk.js.map",
     "runtime-main.js": "/drawer-calc/static/js/runtime-main.781439f6.js",
     "runtime-main.js.map": "/drawer-calc/static/js/runtime-main.781439f6.js.map",
     "static/js/2.9d50fd28.chunk.js": "/drawer-calc/static/js/2.9d50fd28.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.781439f6.js",
     "static/js/2.9d50fd28.chunk.js",
     "static/css/main.c15ca14f.chunk.css",
-    "static/js/main.56790b7e.chunk.js"
+    "static/js/main.704f11e1.chunk.js"
   ]
 }
