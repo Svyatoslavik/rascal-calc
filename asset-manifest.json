@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/Svyatoslavik/drawer-calc/static/css/main.c15ca14f.chunk.css",
-    "main.js": "/Svyatoslavik/drawer-calc/static/js/main.161a5d74.chunk.js",
-    "main.js.map": "/Svyatoslavik/drawer-calc/static/js/main.161a5d74.chunk.js.map",
-    "runtime-main.js": "/Svyatoslavik/drawer-calc/static/js/runtime-main.16249547.js",
-    "runtime-main.js.map": "/Svyatoslavik/drawer-calc/static/js/runtime-main.16249547.js.map",
-    "static/js/2.471582be.chunk.js": "/Svyatoslavik/drawer-calc/static/js/2.471582be.chunk.js",
-    "static/js/2.471582be.chunk.js.map": "/Svyatoslavik/drawer-calc/static/js/2.471582be.chunk.js.map",
-    "static/js/3.bcd35de7.chunk.js": "/Svyatoslavik/drawer-calc/static/js/3.bcd35de7.chunk.js",
-    "static/js/3.bcd35de7.chunk.js.map": "/Svyatoslavik/drawer-calc/static/js/3.bcd35de7.chunk.js.map",
-    "index.html": "/Svyatoslavik/drawer-calc/index.html",
-    "static/css/main.c15ca14f.chunk.css.map": "/Svyatoslavik/drawer-calc/static/css/main.c15ca14f.chunk.css.map",
-    "static/js/2.471582be.chunk.js.LICENSE.txt": "/Svyatoslavik/drawer-calc/static/js/2.471582be.chunk.js.LICENSE.txt"
+    "main.css": "/drawer-calc/static/css/main.c15ca14f.chunk.css",
+    "main.js": "/drawer-calc/static/js/main.161a5d74.chunk.js",
+    "main.js.map": "/drawer-calc/static/js/main.161a5d74.chunk.js.map",
+    "runtime-main.js": "/drawer-calc/static/js/runtime-main.781439f6.js",
+    "runtime-main.js.map": "/drawer-calc/static/js/runtime-main.781439f6.js.map",
+    "static/js/2.c7bade9c.chunk.js": "/drawer-calc/static/js/2.c7bade9c.chunk.js",
+    "static/js/2.c7bade9c.chunk.js.map": "/drawer-calc/static/js/2.c7bade9c.chunk.js.map",
+    "static/js/3.bcd35de7.chunk.js": "/drawer-calc/static/js/3.bcd35de7.chunk.js",
+    "static/js/3.bcd35de7.chunk.js.map": "/drawer-calc/static/js/3.bcd35de7.chunk.js.map",
+    "index.html": "/drawer-calc/index.html",
+    "static/css/main.c15ca14f.chunk.css.map": "/drawer-calc/static/css/main.c15ca14f.chunk.css.map",
+    "static/js/2.c7bade9c.chunk.js.LICENSE.txt": "/drawer-calc/static/js/2.c7bade9c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.16249547.js",
-    "static/js/2.471582be.chunk.js",
+    "static/js/runtime-main.781439f6.js",
+    "static/js/2.c7bade9c.chunk.js",
     "static/css/main.c15ca14f.chunk.css",
     "static/js/main.161a5d74.chunk.js"
   ]
