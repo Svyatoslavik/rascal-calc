@@ -7,9 +7,20 @@ const Title = styled.h1`
   color: palevioletred;
 `;
 
+const DocumentLink = styled.a`
+    color: blue;
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+
+    &:hover{
+        background-color: rgba(0,0,0,.1);
+    }
+`;
+
 export function PageCaclBlum() {
-    const [width, setWidth] = useState(800 - 36);
-    const [height, setHeight] = useState(200);
+    const [width, setWidth] = useState(700 - 36);
+    const [height, setHeight] = useState(180);
     const [nominalLength, setNominalLength] = useState(500);
     const [dspWidth, setDspWidth] = useState(16);
     const [hem, setHem] = useState(1); // зазор на кромку
@@ -126,14 +137,3 @@ export function PageCaclBlum() {
         </div>
     );
 }
-
-const DocumentLink = styled.a`
-    color: blue;
-    display: inline-block;
-    padding: 10px;
-    text-decoration: none;
-
-    &:hover{
-        background-color: rgba(0,0,0,.1);
-    }
-`;
