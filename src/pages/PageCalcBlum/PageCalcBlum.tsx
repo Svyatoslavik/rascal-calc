@@ -48,6 +48,10 @@ export function PageCaclBlum() {
         `Толщина ДСП: ${dspWidth}` + "\n" +
         `Зазор на кромку (по всем торцам деталей): ${hem} `;
 
+    const parseEventNum = (event: any) => {
+        const num = parseInt((event.target as any).value);
+        return isNaN(num) ? 0 : num
+    } 
     return (
         <div>
             <Title>Рассчет шухляды для направляющей Blum</Title>
@@ -57,24 +61,24 @@ export function PageCaclBlum() {
             <div>
                 <div>
                     Внутрення ширина корпуса (тумбы)
-                    <input value={width} onInput={(e) => setWidth(parseInt((e.target as any).value))} />
+                    <input value={width} onInput={(e) => setWidth(parseEventNum(e))} />
                 </div>
                 <div>
                     Номинальная длинна направляющей
-                    <input value={nominalLength} onInput={(e) => setNominalLength(parseInt((e.target as any).value))} />
+                    <input value={nominalLength} onInput={(e) => setNominalLength(parseEventNum(e))} />
                 </div>
                 <div>
                     Высота шухляды
-                    <input value={height} onInput={(e) => setHeight(parseInt((e.target as any).value))} />
+                    <input value={height} onInput={(e) => setHeight(parseEventNum(e))} />
                 </div>
                 <div>
                     Толщина дсп
-                    <input value={dspWidth} onInput={(e) => setDspWidth(parseInt((e.target as any).value))} />
+                    <input value={dspWidth} onInput={(e) => setDspWidth(parseEventNum(e))} />
                 </div>
 
                 <div>
                     Погрешность на кромку
-                    <input value={hem} onInput={(e) => setHem(parseInt((e.target as any).value))} />
+                    <input value={hem} onInput={(e) => setHem(parseEventNum(e))} />
                 </div>
             </div>
             <div>

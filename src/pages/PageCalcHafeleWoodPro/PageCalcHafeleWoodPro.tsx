@@ -1,6 +1,7 @@
 import react, { useState } from 'react';
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from '@mui/material';
 import { MainLayout } from '../../layouts/MainLayout/MainLayout';
+import { parseEventNum } from '../../utils/utils';
 
 const CalcItemResult = ({
   title,
@@ -22,7 +23,7 @@ const CalcItemResult = ({
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableBody>
           {items.map(({ title, value }, i) => (
-            <TableRow>
+            <TableRow key={i}>
               <TableCell component="th" scope="row" style={{ width: titleWidth || 160 }}>
                 {title}
               </TableCell>
@@ -85,7 +86,7 @@ ${sideDepth} x ${sideHeight} - 2шт
             fullWidth
             variant="standard"
             value={width}
-            onInput={(e) => setWidth(parseInt((e.target as any).value))}
+            onInput={(e) => setWidth(parseEventNum(e))}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -95,7 +96,7 @@ ${sideDepth} x ${sideHeight} - 2шт
             fullWidth
             variant="standard"
             value={depth}
-            onInput={(e) => setDepth(parseInt((e.target as any).value))}
+            onInput={(e) => setDepth(parseEventNum(e))}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -105,7 +106,7 @@ ${sideDepth} x ${sideHeight} - 2шт
             fullWidth
             variant="standard"
             value={height}
-            onInput={(e) => setHeight(parseInt((e.target as any).value))}
+            onInput={(e) => setHeight(parseEventNum(e))}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -115,7 +116,7 @@ ${sideDepth} x ${sideHeight} - 2шт
             fullWidth
             variant="standard"
             value={dspWidth}
-            onInput={(e) => setDspWidth(parseInt((e.target as any).value))}
+            onInput={(e) => setDspWidth(parseEventNum(e))}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -125,7 +126,7 @@ ${sideDepth} x ${sideHeight} - 2шт
             fullWidth
             variant="standard"
             value={hem}
-            onInput={(e) => setHem(parseInt((e.target as any).value))}
+            onInput={(e) => setHem(parseEventNum(e))}
           />
         </Grid>
       </Grid>
