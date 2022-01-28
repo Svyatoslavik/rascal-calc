@@ -86,6 +86,7 @@ ${sideDepth} x ${sideHeight} - 2шт
         <Grid item xs={12}>
           <TextField
             required
+            inputMode="numeric"
             label="Внутрення ширина корпуса (тумбы)"
             fullWidth
             variant="standard"
@@ -96,6 +97,7 @@ ${sideDepth} x ${sideHeight} - 2шт
         <Grid item xs={12} md={6}>
           <TextField
             required
+            inputMode="numeric"
             label="Глубина шухляды"
             fullWidth
             variant="standard"
@@ -106,6 +108,7 @@ ${sideDepth} x ${sideHeight} - 2шт
         <Grid item xs={12} md={6}>
           <TextField
             required
+            inputMode="numeric"
             label="Высота шухляды"
             fullWidth
             variant="standard"
@@ -116,6 +119,7 @@ ${sideDepth} x ${sideHeight} - 2шт
         <Grid item xs={12} md={6}>
           <TextField
             required
+            inputMode="numeric"
             label="Толщина дсп"
             fullWidth
             variant="standard"
@@ -126,6 +130,7 @@ ${sideDepth} x ${sideHeight} - 2шт
         <Grid item xs={12} md={6}>
           <TextField
             required
+            inputMode="numeric"
             label="Погрешность на кромку"
             fullWidth
             variant="standard"
