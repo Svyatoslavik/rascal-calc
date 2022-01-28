@@ -8,7 +8,7 @@ const CalcItemResult = ({
   items,
   titleWidth,
 }: {
-  title: string;
+  title?: string;
   titleWidth?: number
   items: {
     title: string;
@@ -16,9 +16,9 @@ const CalcItemResult = ({
   }[];
 }) => (
   <>
-    <Typography component="h3" variant="h6" gutterBottom sx={{ mt: 3 }}>
+    {title && (<Typography component="h3" variant="h6" gutterBottom sx={{ mt: 3 }}>
       {title}
-    </Typography>
+    </Typography>)}
     <TableContainer>
       <Table aria-label="custom pagination table">
         <TableBody>
@@ -190,7 +190,6 @@ ${sideDepth} x ${sideHeight} - 2шт
 
             <CalcItemResult
               titleWidth={300}
-              title="Дно"
               items={[
                 { title: 'Высота блока (шухляда + направляющие)', value: height + 28 },
                 { title: 'Минимальная глубина корпуса', value: depth + 18 },
