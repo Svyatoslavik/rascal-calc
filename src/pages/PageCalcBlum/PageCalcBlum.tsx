@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { MainLayoutContext } from '../../layouts/MainLayout/MainLayout';
 
 const Title = styled.h1`
   font-size: 1.5em;
@@ -19,6 +20,9 @@ const DocumentLink = styled.a`
 `;
 
 export function PageCaclBlum() {
+    const layoutCtx = useContext(MainLayoutContext);
+    useEffect(() => layoutCtx('Blum Tandem 560F5000', './blum560f5000.pdf'), [layoutCtx]);
+
     const [width, setWidth] = useState(700 - 36);
     const [height, setHeight] = useState(180);
     const [nominalLength, setNominalLength] = useState(500);

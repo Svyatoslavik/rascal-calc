@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { MainLayoutContext } from '../../layouts/MainLayout/MainLayout';
 
 const Title = styled.h1`
   font-size: 1.5em;
@@ -26,6 +27,9 @@ const DocumentLink = styled.a`
 `;
 
 export function PageCalcBlumAntaro() {
+    const layoutCtx = useContext(MainLayoutContext);
+    useEffect(() => layoutCtx('Antaro (M)', './tandembox_antaro.pdf'), [layoutCtx]);
+
     const [width, setWidth] = useState(700 - 36);
     const [nominalLength, setNominalLength] = useState(500);
     const [gapForChipboardEdge, setGapForChipboardEdge] = useState(1); // зазор на кромку

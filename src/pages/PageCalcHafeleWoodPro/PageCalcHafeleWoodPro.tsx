@@ -1,6 +1,6 @@
-import react, { useState } from 'react';
+import react, { useContext, useEffect, useState } from 'react';
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from '@mui/material';
-import { MainLayout } from '../../layouts/MainLayout/MainLayout';
+import { MainLayout, MainLayoutContext } from '../../layouts/MainLayout/MainLayout';
 import { parseEventNum } from '../../utils/utils';
 
 const CalcItemResult = ({
@@ -20,11 +20,12 @@ const CalcItemResult = ({
       {title}
     </Typography>
     <TableContainer>
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+      <Table aria-label="custom pagination table">
         <TableBody>
           {items.map(({ title, value }, i) => (
             <TableRow key={i}>
-              <TableCell component="th" scope="row" style={{ width: titleWidth || 160 }}>
+              {/* <TableCell component="th" scope="row" style={{ maxWidth: titleWidth || 160 }}> */}
+              <TableCell component="th" scope="row" style={{ width: 1, whiteSpace: 'nowrap' }}>
                 {title}
               </TableCell>
               <TableCell >
@@ -42,6 +43,8 @@ const CalcItemResult = ({
 
 
 export function PageCalcHafeleWoodPro() {
+  const layoutCtx = useContext(MainLayoutContext);
+  useEffect(() => layoutCtx('Hafele Wood Pro', './Woodpro.pdf'), [layoutCtx]);
 
   const [width, setWidth] = useState(800 - 36);
   const [height, setHeight] = useState(200);
@@ -73,8 +76,9 @@ ${sideDepth} x ${sideHeight} - 2шт
 `
 
   return (
-    <MainLayout title="Hafele Wood Pro" linkToDocument="./Woodpro.pdf">
-      <Typography variant="h3">
+    // <MainLayout title="Hafele Wood Pro" linkToDocument="./Woodpro.pdf">
+    <>
+      <Typography variant="h3" sx={{ mb: 3 }}>
         Рассчет шухляды для Hafele Wood Pro
       </Typography>
 
@@ -209,6 +213,7 @@ ${sideDepth} x ${sideHeight} - 2шт
         </Paper>
 
       </Grid>
-    </MainLayout>
+      </>
+    // </MainLayout>
   );
 }

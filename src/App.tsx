@@ -5,17 +5,21 @@ import { PageCalcHafeleWoodPro } from './pages/PageCalcHafeleWoodPro/PageCalcHaf
 import { PageCaclBlum } from './pages/PageCalcBlum/PageCalcBlum';
 import { PageCalcBlumAntaro } from './pages/PageCalcBlumAntaro/PageCalcBlumAntaro';
 import { PageHome } from './pages/PageHome/PageHome';
+import { MainLayout } from './layouts/MainLayout/MainLayout';
 
 
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<PageHome />} />
-      <Route path="blum" element={<PageCaclBlum />} />
-      <Route path="antaro" element={<PageCalcBlumAntaro />} />
-      <Route path="hafele" element={<PageCalcHafeleWoodPro />} />
-    </Routes>
+    <MainLayout>
+      <Routes>
+        <Route path="/" element={<PageHome />} />
+        <Route path="blum" element={<PageCaclBlum />} />
+        <Route path="antaro" element={<PageCalcBlumAntaro />} />
+        <Route path="hafele" element={<PageCalcHafeleWoodPro />} />
+     </Routes>
+    </MainLayout>
+    
   );
 }
 
