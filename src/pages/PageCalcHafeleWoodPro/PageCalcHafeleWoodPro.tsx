@@ -2,6 +2,7 @@ import react, { useContext, useEffect, useState } from 'react';
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from '@mui/material';
 import { MainLayout, MainLayoutContext } from '../../layouts/MainLayout/MainLayout';
 import { parseEventNum } from '../../utils/utils';
+import { Details } from '../../components/Details/Details';
 
 const CalcItemResult = ({
   title,
@@ -205,17 +206,7 @@ ${sideDepth} x ${sideHeight} - 2шт
       </Grid>
 
       <Grid item xs={12}>
-        <Paper sx={{
-          p: 2,
-        }}>
-          <Typography component="h2" variant="h5" color="primary" gutterBottom>
-            Детали:
-          </Typography>
-          <Typography id="modal-description" sx={{ whiteSpace: 'pre-line', p: 3 }}>
-            {detailsTxt}
-          </Typography>
-        </Paper>
-
+        <Details>{detailsTxt}</Details>
       </Grid>
       </>
     // </MainLayout>

@@ -1,5 +1,7 @@
+import { Grid } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Details } from '../../components/Details/Details';
 import { MainLayoutContext } from '../../layouts/MainLayout/MainLayout';
 
 const Title = styled.h1`
@@ -138,10 +140,10 @@ export function PageCaclBlum() {
                 </div>
             </div>
 
-            <div>
-                <h3>Детали</h3>
-                <div className="details-block">{detailsTxt}</div>
-            </div>
+            <Grid item xs={12}>
+                <Details>{detailsTxt}</Details>
+            </Grid>
+            
         </div>
     );
 }
