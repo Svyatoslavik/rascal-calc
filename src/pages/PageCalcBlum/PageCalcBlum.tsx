@@ -1,35 +1,30 @@
-import { Grid } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import react, { useContext, useEffect, useState } from 'react';
+import { Grid, Paper, Typography } from '@mui/material';
 import { Details } from '../../components/Details/Details';
+import { Title } from '../../components/Title/Title';
 import { MainLayoutContext } from '../../layouts/MainLayout/MainLayout';
-
-const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: palevioletred;
-`;
-
-const DocumentLink = styled.a`
-    color: blue;
-    display: inline-block;
-    padding: 10px;
-    text-decoration: none;
-
-    &:hover{
-        background-color: rgba(0,0,0,.1);
-    }
-`;
+import { RunnerSystemForm, RunnerSystemFormState } from '../../components/RunnerSystemForm/RunnerSystemForm';
+import { ItemDetails } from '../../components/ItemDetails/ItemDetails';
 
 export function PageCaclBlum() {
     const layoutCtx = useContext(MainLayoutContext);
     useEffect(() => layoutCtx('Blum Tandem 560F5000', './blum560f5000.pdf'), [layoutCtx]);
 
-    const [width, setWidth] = useState(700 - 36);
-    const [height, setHeight] = useState(180);
-    const [nominalLength, setNominalLength] = useState(500);
-    const [dspWidth, setDspWidth] = useState(16);
-    const [hem, setHem] = useState(1); // зазор на кромку
+    const [formState, setFormState] = useState<RunnerSystemFormState>({
+        width: 700 - 36,
+        height: 180,
+        length: 500,
+        dspWidth: 16,
+        gapForChipboardEdge: 1, // зазор на кромку
+    });
+
+    const {
+        width,
+        height,
+        length: nominalLength,
+        dspWidth,
+        gapForChipboardEdge: hem,
+    } = formState;
 
     // const drawerLength = nominalLength - 10; // отнимаем 10мм согласно инструкции к направляющей,
     const drawerLength = nominalLength - 8; // Но: практика показала что отнять надо только 8мм 
@@ -54,96 +49,81 @@ export function PageCaclBlum() {
         `Толщина ДСП: ${dspWidth}` + "\n" +
         `Зазор на кромку (по всем торцам деталей): ${hem} `;
 
-    const parseEventNum = (event: any) => {
-        const num = parseInt((event.target as any).value);
-        return isNaN(num) ? 0 : num
-    } 
     return (
-        <div>
+        <>
             <Title>Рассчет шухляды для направляющей Blum</Title>
 
-            <DocumentLink href="./blum560f5000.pdf" target="_blank">📝 Documentation: Blum 560F5000</DocumentLink>
+            <RunnerSystemForm
+                state={formState}
+                onChange={setFormState}
+            />
 
-            <div>
-                <div>
-                    Внутрення ширина корпуса (тумбы)
-                    <input value={width} onInput={(e) => setWidth(parseEventNum(e))} />
-                </div>
-                <div>
-                    Номинальная длинна направляющей
-                    <input value={nominalLength} onInput={(e) => setNominalLength(parseEventNum(e))} />
-                </div>
-                <div>
-                    Высота шухляды
-                    <input value={height} onInput={(e) => setHeight(parseEventNum(e))} />
-                </div>
-                <div>
-                    Толщина дсп
-                    <input value={dspWidth} onInput={(e) => setDspWidth(parseEventNum(e))} />
-                </div>
+            <Grid container spacing={3} sx={{ mt: 4, mb: 4 }}>
+                <Grid item xs={12}>
+                    <Paper sx={{
+                        p: 2,
+                    }}>
+                        <Typography component="h2" variant="h5" color="primary" gutterBottom>
+                            Итого рассчитанные значения
+                        </Typography>
 
-                <div>
-                    Погрешность на кромку
-                    <input value={hem} onInput={(e) => setHem(parseEventNum(e))} />
-                </div>
-            </div>
-            <div>
-                <h3>Итого рассчитанные значения</h3>
-                <div>
-                    <h4>
-                        Дно
-                    </h4>
-                    <div>
-                        Ширина: {bottomWidth}<br />
-                        Длинна: {bottomDepth}<br />
-                    </div>
-                </div>
+                        <ItemDetails
+                            title="Дно"
+                            items={[
+                                { title: 'Ширина', value: bottomWidth },
+                                { title: 'Длинна', value: bottomDepth },
+                            ]}
+                        />
 
-                <div>
-                    <h4>
-                        Задняя стенка
-                    </h4>
-                    <div>
-                        Ширина: {backWidth}<br />
-                        Высота: {backHeight}<br />
-                    </div>
-                </div>
-                <div>
-                    <h4>
-                        Боковухи (2шт)
-                    </h4>
-                    <div>
-                        Длинна: {sideDepth}<br />
-                        Высота: {sideHeight}<br />
-                    </div>
-                </div>
-                <div>
-                    <h4>
-                        Передняя (фронт) стенка
-                    </h4>
-                    <div>
-                        Ширина: {frontWidth}<br />
-                        Высота: {frontHeight}<br />
-                    </div>
-                </div>
+                        <ItemDetails
+                            title="Задняя стенка"
+                            items={[
+                                { title: 'Ширина', value: backWidth },
+                                { title: 'Высота', value: backHeight },
+                            ]}
+                        />
 
-                <div>
-                    <h4>
-                        Другие данные:
-                    </h4>
-                    <p>
-                        Высота блока (шухляда + направляющие) {height + 28}
-                    </p>
-                    <p>
-                        Минимальная глубина корпуса {nominalLength + 18}
-                    </p>
-                </div>
-            </div>
+                        <ItemDetails
+                            title="Боковухи (2шт)"
+                            items={[
+                                { title: 'Длинна', value: sideDepth },
+                                { title: 'Высота', value: sideHeight },
+                            ]}
+                        />
 
+                        <ItemDetails
+                            title="Передняя (фронт) стенка"
+                            items={[
+                                { title: 'Ширина', value: frontWidth },
+                                { title: 'Высота', value: frontHeight },
+                            ]}
+                        />
+
+                    </Paper>
+                </Grid>
+
+                <Grid item xs={12}>
+                    <Paper sx={{
+                        p: 2,
+                    }}>
+                        <Typography component="h2" variant="h5" color="primary" gutterBottom>
+                            Другие данные:
+                        </Typography>
+
+                        <ItemDetails
+                            titleWidth={300}
+                            items={[
+                                { title: 'Высота блока (шухляда + направляющие)', value: height + 28 },
+                                { title: 'Минимальная глубина корпуса', value: nominalLength + 18 },
+                            ]}
+                        />
+                    </Paper>
+                </Grid>
+            </Grid>
             <Grid item xs={12}>
                 <Details>{detailsTxt}</Details>
             </Grid>
-            
-        </div>
+
+        </>
     );
 }

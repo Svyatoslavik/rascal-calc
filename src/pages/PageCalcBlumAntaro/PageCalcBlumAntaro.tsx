@@ -1,30 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { Grid, Paper, TextField, Typography } from '@mui/material';
+import react, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Details } from '../../components/Details/Details';
+import { ItemDetails } from '../../components/ItemDetails/ItemDetails';
+import { Title } from '../../components/Title/Title';
 import { MainLayoutContext } from '../../layouts/MainLayout/MainLayout';
-
-const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: rgb(219, 112, 147);
-`;
-
-const DetailsBlock = styled.div`
-    white-space: pre;
-    margin-left: 1rem;
-    line-height: 1.5;
-    font-family: 'Courier New', Courier, monospace;
-`;
-
-const DocumentLink = styled.a`
-    color: blue;
-    display: inline-block;
-    padding: 10px;
-    text-decoration: none;
-
-    &:hover{
-        background-color: rgba(0,0,0,.1);
-    }
-`;
+import { parseEventNum } from '../../utils/utils';
 
 export function PageCalcBlumAntaro() {
     const layoutCtx = useContext(MainLayoutContext);
@@ -47,53 +28,74 @@ export function PageCalcBlumAntaro() {
         `Зазор на кромку (по всем торцам деталей): ${gapForChipboardEdge}`;
 
     return (
-        <div>
+        <>
             <Title>Рассчет шухляды для Tandembox Antaro Blum (Высота M 84mm)</Title>
+            <Grid container spacing={3}>
+                <Grid item xs={12} md={4}>
+                    <TextField
+                        required
+                        inputProps={{ inputMode: 'numeric' }}
+                        label="Внутрення ширина корпуса (тумбы)"
+                        fullWidth
+                        variant="standard"
+                        value={width}
+                        onInput={(e) => setWidth(parseEventNum(e))}
+                    />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                    <TextField
+                        required
+                        inputProps={{ inputMode: 'numeric' }}
+                        label="Номинальная длинна ящика"
+                        fullWidth
+                        variant="standard"
+                        value={nominalLength}
+                        onInput={(e) => setNominalLength(parseEventNum(e))}
+                    />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                    <TextField
+                        required
+                        inputProps={{ inputMode: 'numeric' }}
+                        label="Погрешность на кромку"
+                        fullWidth
+                        variant="standard"
+                        value={gapForChipboardEdge}
+                        onInput={(e) => setGapForChipboardEdge(parseEventNum(e))}
+                    />
+                </Grid>
+            </Grid>
+            <Grid container spacing={3} sx={{ mt: 4, mb: 4 }}>
+                <Grid item xs={12}>
+                    <Paper sx={{
+                        p: 2,
+                    }}>
+                        <Typography component="h2" variant="h5" color="primary" gutterBottom>
+                            Итого рассчитанные значения
+                        </Typography>
 
-            <DocumentLink href="./tandembox_antaro.pdf" target="_blank">📝 Documentation: Blum Tandembox Antaro</DocumentLink>
+                        <ItemDetails
+                            title="Дно"
+                            items={[
+                                { title: 'Ширина', value: bottomWidth },
+                                { title: 'Длинна', value: bottomLength },
+                            ]}
+                        />
 
-            <div>
-                <div>
-                    Внутрення ширина корпуса (тумбы)
-                    <input value={width} onInput={(e) => setWidth(parseInt((e.target as any).value))} />
-                </div>
-                <div>
-                    Номинальная длинна ящика
-                    <input value={nominalLength} onInput={(e) => setNominalLength(parseInt((e.target as any).value))} />
-                </div>
-                <div>
-                    Погрешность на кромку
-                    <input value={gapForChipboardEdge} onInput={(e) => setGapForChipboardEdge(parseInt((e.target as any).value))} />
-                </div>
-            </div>
+                        <ItemDetails
+                            title="Задняя стенка"
+                            items={[
+                                { title: 'Ширина', value: backWidth },
+                                { title: 'Высота', value: backHeight },
+                            ]}
+                        />
+                    </Paper>
+                </Grid>
+            </Grid>
 
-            <div>
-                <h3>Итого рассчитанные значения</h3>
-                <div>
-                    <h4>
-                        Дно
-                    </h4>
-                    <div>
-                        Ширина: {bottomWidth}<br />
-                        Длинна: {bottomLength}<br />
-                    </div>
-                </div>
-
-                <div>
-                    <h4>
-                        Задняя стенка
-                    </h4>
-                    <div>
-                        Ширина: {backWidth}<br />
-                        Высота: {backHeight}<br />
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h3>Детали</h3>
-                <DetailsBlock>{detailsTxt}</DetailsBlock>
-            </div>
-        </div>
+            <Grid item xs={12}>
+                <Details>{detailsTxt}</Details>
+            </Grid>
+        </>
     );
 }

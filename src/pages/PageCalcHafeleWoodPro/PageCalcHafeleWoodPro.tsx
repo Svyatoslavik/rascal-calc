@@ -1,57 +1,31 @@
 import react, { useContext, useEffect, useState } from 'react';
-import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from '@mui/material';
-import { MainLayout, MainLayoutContext } from '../../layouts/MainLayout/MainLayout';
+import { Grid, Paper, TextField, Typography } from '@mui/material';
+import { MainLayoutContext } from '../../layouts/MainLayout/MainLayout';
 import { parseEventNum } from '../../utils/utils';
 import { Details } from '../../components/Details/Details';
-
-const CalcItemResult = ({
-  title,
-  items,
-  titleWidth,
-}: {
-  title?: string;
-  titleWidth?: number
-  items: {
-    title: string;
-    value: string | number;
-  }[];
-}) => (
-  <>
-    {title && (<Typography component="h3" variant="h6" gutterBottom sx={{ mt: 3 }}>
-      {title}
-    </Typography>)}
-    <TableContainer>
-      <Table aria-label="custom pagination table">
-        <TableBody>
-          {items.map(({ title, value }, i) => (
-            <TableRow key={i}>
-              {/* <TableCell component="th" scope="row" style={{ maxWidth: titleWidth || 160 }}> */}
-              <TableCell component="th" scope="row" style={{ width: 1, whiteSpace: 'nowrap' }}>
-                {title}
-              </TableCell>
-              <TableCell >
-                {value}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  </>
-);
-
-
-
+import { ItemDetails } from '../../components/ItemDetails/ItemDetails';
+import { Title } from '../../components/Title/Title';
+import { RunnerSystemForm, RunnerSystemFormState } from '../../components/RunnerSystemForm/RunnerSystemForm';
 
 export function PageCalcHafeleWoodPro() {
   const layoutCtx = useContext(MainLayoutContext);
   useEffect(() => layoutCtx('Hafele Wood Pro', './Woodpro.pdf'), [layoutCtx]);
+  const [formState, setFormState] = useState<RunnerSystemFormState>({
+    width: 700 - 36,
+    height: 180,
+    length: 500,
+    dspWidth: 16,
+    gapForChipboardEdge: 1,
+  });
 
-  const [width, setWidth] = useState(800 - 36);
-  const [height, setHeight] = useState(200);
-  const [depth, setDepth] = useState(500);
-  const [dspWidth, setDspWidth] = useState(16);
-  const [hem, setHem] = useState(1);
+  const {
+    width,
+    height,
+    length: depth,
+    dspWidth,
+    gapForChipboardEdge: hem,
+  } = formState;
+
 
   const bottomWidth = width - 49 - hem;
   const bottomDepth = depth - dspWidth - hem;
@@ -77,69 +51,15 @@ ${sideDepth} x ${sideHeight} - 2шт
 `
 
   return (
-    // <MainLayout title="Hafele Wood Pro" linkToDocument="./Woodpro.pdf">
     <>
-      <Typography variant="h3" sx={{ mb: 3 }}>
+      <Title>
         Рассчет шухляды для Hafele Wood Pro
-      </Typography>
+      </Title>
 
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <TextField
-            required
-            inputProps={{ inputMode: 'numeric' }}
-            label="Внутрення ширина корпуса (тумбы)"
-            fullWidth
-            variant="standard"
-            value={width}
-            onInput={(e) => setWidth(parseEventNum(e))}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            inputProps={{ inputMode: 'numeric' }}
-            label="Глубина шухляды"
-            fullWidth
-            variant="standard"
-            value={depth}
-            onInput={(e) => setDepth(parseEventNum(e))}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            inputProps={{ inputMode: 'numeric' }}
-            label="Высота шухляды"
-            fullWidth
-            variant="standard"
-            value={height}
-            onInput={(e) => setHeight(parseEventNum(e))}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            inputProps={{ inputMode: 'numeric' }}
-            label="Толщина дсп"
-            fullWidth
-            variant="standard"
-            value={dspWidth}
-            onInput={(e) => setDspWidth(parseEventNum(e))}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            inputProps={{ inputMode: 'numeric' }}
-            label="Погрешность на кромку"
-            fullWidth
-            variant="standard"
-            value={hem}
-            onInput={(e) => setHem(parseEventNum(e))}
-          />
-        </Grid>
-      </Grid>
+      <RunnerSystemForm 
+        state={formState}
+        onChange={setFormState}
+      />
 
       <Grid container spacing={3} sx={{ mt: 4, mb: 4 }}>
         <Grid item xs={12}>
@@ -150,7 +70,7 @@ ${sideDepth} x ${sideHeight} - 2шт
               Итого рассчитанные значения
             </Typography>
 
-            <CalcItemResult
+            <ItemDetails
               title="Дно"
               items={[
                 { title: 'Ширина', value: bottomWidth },
@@ -158,7 +78,7 @@ ${sideDepth} x ${sideHeight} - 2шт
               ]}
             />
 
-            <CalcItemResult
+            <ItemDetails
               title="Задняя стенка"
               items={[
                 { title: 'Ширина', value: backWidth },
@@ -166,7 +86,7 @@ ${sideDepth} x ${sideHeight} - 2шт
               ]}
             />
 
-            <CalcItemResult
+            <ItemDetails
               title="Боковухи (2шт)"
               items={[
                 { title: 'Длинна', value: sideDepth },
@@ -174,14 +94,13 @@ ${sideDepth} x ${sideHeight} - 2шт
               ]}
             />
 
-            <CalcItemResult
+            <ItemDetails
               title="Передняя (фронт) стенка"
               items={[
                 { title: 'Ширина', value: frontWidth },
                 { title: 'Высота', value: frontHeight },
               ]}
             />
-
 
           </Paper>
         </Grid>
@@ -194,7 +113,7 @@ ${sideDepth} x ${sideHeight} - 2шт
               Другие данные:
             </Typography>
 
-            <CalcItemResult
+            <ItemDetails
               titleWidth={300}
               items={[
                 { title: 'Высота блока (шухляда + направляющие)', value: height + 28 },
@@ -208,7 +127,6 @@ ${sideDepth} x ${sideHeight} - 2шт
       <Grid item xs={12}>
         <Details>{detailsTxt}</Details>
       </Grid>
-      </>
-    // </MainLayout>
+    </>
   );
 }
